@@ -15,7 +15,7 @@ class Store:
         self.data: dict[str, dict] = {}
         if self.path.exists():
             try:
-                self.data = json.loads(self.path.read_text())
+                self.data = json.loads(self.path.read_text(encoding="utf-8"))
             except json.JSONDecodeError:
                 print(f"  ! {self.path} corrupt, starting fresh")
 
@@ -68,4 +68,5 @@ class Store:
         return path
 
     def save(self) -> None:
-        self.path.write_text(json.dumps(self.data, indent=2, ensure_ascii=False))
+        self.path.write_text(json.dumps(self.data, indent=2, ensure_ascii=False),
+                             encoding="utf-8")
