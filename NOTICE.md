@@ -15,6 +15,7 @@ mailer, store, mock, cli), the test suite, the GitHub Actions workflow and the s
 - `config.yaml`: filters retuned for fresher / entry-level Java, backend and full-stack roles in India.
 - `companies.yaml`: edited company list.
 - `jobhunt/cli.py`: the CLI now changes to the project root and loads `.env` from there, so it works from any directory.
+- `jobhunt/store.py`: `seen.json` is now read and written explicitly as UTF-8 (avoids Windows default-codepage errors).
 - `pyproject.toml`: added packaging metadata.
 - `tests/`: the filter fixture is now frozen in `tests/fixtures/test_config.yaml` so personal edits to `config.yaml` no longer break two tests.
 - `.env.example`: contains placeholders only.
