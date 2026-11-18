@@ -1,0 +1,167 @@
+# jobhunt configuration, tuned for fresher / entry-level (0-1 yr) software roles
+# with a Java/Spring Boot backend and React/TypeScript full-stack focus, India-based
+# locations plus remote. Edit to suit your own profile.
+#
+# Tune `filters` first. It is deterministic and free; it keeps the LLM bill small.
+
+filters:
+  # Title regexes, matched case-insensitively against the job title only.
+  # A title must match at least one include AND zero excludes.
+  include_titles:
+    # --- Core: software engineer / developer family (fresher levels) ---
+    - 'software engineer'
+    - 'software developer'
+    - 'software development engineer'
+    - '\bsde\b'
+    - '\bsde\s*-?\s*(i|1)\b'
+    - '\bsde\s*-?\s*(i{1,3}|[123])\b'          # the screener / exclude list removes II+ below
+    - 'member of technical staff'
+    - '\bmts\b'
+    - 'application (engineer|developer)'
+    - 'product (engineer|developer)'
+    - 'associate (software )?(engineer|developer)'
+    - 'junior (software )?(engineer|developer)'
+    - 'graduate (software )?(engineer|developer)'
+    - '\b(new grad|new graduate|fresher|entry[- ]level|early career)\b'
+    - 'engineer\s*-?\s*(i|1)\b'
+    - 'developer\s*-?\s*(i|1)\b'
+    - '\b(analyst programmer|programmer analyst|technology analyst|systems? analyst)\b'
+
+    # --- Trainee / campus-style roles (right level for a 2026 grad) ---
+    - '\b(graduate engineer trainee|get|software trainee|trainee (software )?engineer|engineer trainee)\b'
+    - '\b(associate|junior) (technology|technical) (analyst|consultant)\b'
+    - 'campus hire'
+
+    # --- Java / backend (strongest match) ---
+    - '\bjava\b.*\b(engineer|developer|programmer)\b'
+    - '\b(engineer|developer)\b.*\bjava\b'
+    - '\bspring( ?boot)?\b.*\b(engineer|developer)\b'
+    - '\b(backend|back-end|back end|server[- ]side|api)\b.*\b(engineer|developer)\b'
+    - '\b(engineer|developer)\b.*\b(backend|back-end|back end|api)\b'
+    - '\b(jvm|j2ee|jee)\b.*\b(engineer|developer)\b'
+    - 'microservices?.*\b(engineer|developer)\b'
+
+    # --- Full stack / web ---
+    - '\bfull[- ]?stack\b'
+    - '\b(web|website) (developer|engineer)\b'
+    - '\b(software|platform|application|product)\b.*\bengineer\b'
+    - '\b(react|reactjs|react\.js|typescript|javascript|node(\.js|js)?)\b.*\b(engineer|developer)\b'
+    - '\b(frontend|front-end|front end|ui)\b.*\b(engineer|developer)\b'   # React/TS projects + frontend assessment
+    - '\b(engineer|developer)\b.*\b(frontend|front-end|front end|react|ui)\b'
+    - 'mern|mean stack'
+
+    # --- Data / SQL / Python / ML (resume: PostgreSQL analytics, scikit-learn, published paper) ---
+    - '\b(sql|database|dbms)\b.*\b(developer|engineer)\b'
+    - '\b(developer|engineer)\b.*\b(sql|database)\b'
+    - '\bpython\b.*\b(developer|engineer)\b'
+    - '\b(engineer|developer)\b.*\bpython\b'
+    - '\b(junior|associate|entry[- ]level)?\s*data engineer\b'
+    - '\banalytics engineer\b'
+    - '\b(machine learning|ml|ai|applied ai|genai|llm)\b.*\bengineer\b'
+    - '\b(associate|junior)\b.*\b(machine learning|ml|ai)\b'
+    - '\b(ai|ml)\s*(developer|engineer)\b'
+    - '\bforward deployed engineer\b'
+    - '\b(solutions?|implementation|integration|customer) engineer\b'   # entry-level SE-adjacent
+    - '\bsales engineer\b.*\b(associate|junior)\b'
+
+    # --- Quality / testing (JUnit 5, Vitest, RTL on resume) ---
+    - '\bsdet\b'
+    - 'software development engineer in test'
+    - '\b(software )?(test|qa|quality) (automation )?(engineer|developer)\b'
+    - '\bautomation (test )?(engineer|developer)\b'
+    - '\bquality engineer\b'
+
+    # --- Cloud / platform / reliability (entry-level versions) ---
+    - '\b(cloud|devops|platform|infrastructure|infra|site reliability|sre)\b.*\b(engineer|developer)\b'
+    - '\bsre\b'
+    - '\b(release|build) engineer\b'
+
+    # --- Security (Tata IAM / cybersecurity job simulation) ---
+    - '\b(security|iam|identity)\b.*\b(software )?(engineer|developer)\b'
+
+    # --- Consulting / services style fresher titles ---
+    - '\b(associate|junior|graduate)\s+(consultant|engineer|analyst|developer)\b.*\b(java|software|technology|digital)\b'
+    - '\bdigital (engineer|developer)\b'
+    - '\bsystem engineer\b'
+    - '\bsystems engineer\b'
+    - '\b(technical|technology) (associate|analyst)\b'
+    - '\b(intern|internship|apprentice|co-?op)\b'
+
+  # Anything matching these is dropped even if an include matched.
+  exclude_titles:
+    # --- Too senior (you are 0-1 yr) ---
+    - '\b(staff|principal|distinguished|fellow|architect)\b'
+    - '\b(senior|sr\.?|lead|leader)\b'
+    - '\b(director|vp|vice president|head of|chief|cto|avp|svp)\b'
+    - '\b(manager|management|managing)\b'
+    - '\b(ii|iii|iv|v|vi)\b'                   # Software Engineer II/III/IV (needs 2+ yrs)
+    - '\b(sde|swe|engineer|developer)\s*-?\s*[2-9]\b'
+    - '\blevel\s*[2-9]\b|\bl[3-9]\b|\be[3-9]\b'
+    - '\b([2-9]|1[0-9])\s*\+?\s*(years?|yrs?)\b'
+    - '\b(experienced|expert|specialist)\b'
+
+    # --- Not full-time entry roles ---
+    - '\b(contract|contractor|part[- ]time|freelance)\b'
+
+    # --- Wrong function ---
+    - '\b(sales|account executive|business development|marketing|recruit|talent|hr|human resources|finance|accountant|legal|counsel|procurement|payroll)\b'
+    - '\b(customer support|technical support|support engineer|customer success|helpdesk|help desk|service desk)\b'
+    - '\b(designer|design|ux|creative|content|copywriter|writer)\b'
+    - '\b(operations|ops manager|logistics|supply chain|warehouse|admin|administrative|assistant)\b'
+
+    # --- Wrong discipline / stack (not on resume) ---
+    - '\b(ios|android|mobile|flutter|swift|kotlin|unity|game|gameplay)\b'
+    - '\b(embedded|firmware|fpga|asic|vlsi|rtl|hardware|silicon|kernel|driver|dpdk)\b'
+    - '\b(salesforce|sap|abap|servicenow|mainframe|cobol|peoplesoft|workday|oracle (apps|ebs|cloud)|dynamics|sharepoint|power ?bi)\b'
+    - '\b(\.net|dotnet|c#|asp\.net|php|ruby|rails|perl|golang|rust|scala|elixir|erlang)\b'
+    - '\b(research scientist|applied scientist|data scientist|phd)\b'
+    - '\b(mechanical|civil|electrical|electronics|chemical|manufacturing|production|plant|site engineer|field engineer|maintenance)\b'
+    - '\b(network engineer|noc|soc analyst|penetration|pentest|red team)\b'
+    - '\b(blockchain|solidity|web3)\b'
+
+  # Substrings matched against "<location> <title>", case-insensitive.
+  # "india" catches most postings; the city names catch boards that omit the country.
+  # Empty list = accept every location.
+  locations:
+    - india
+    - kolhapur
+    - pune
+    - mumbai
+    - navi mumbai
+    - thane
+    - nashik
+    - maharashtra
+    - bangalore
+    - bengaluru
+    - hyderabad
+    - noida
+    - delhi
+    - ncr
+    - kolkata
+    - ahmedabad
+    - surat
+    - indore
+    - mysuru
+    - mysore
+    - remote
+
+  # If true, anything reading as remote passes the location gate.
+  # (Note: some "remote" roles are US-only; the LLM screen should reject those.)
+  allow_remote: true
+
+  # Fresher roles stay open longer than senior ones, so the window is wider.
+  max_age_days: 30
+
+# --- LLM stages -------------------------------------------------------------
+screen_batch_size: 8      # jobs per screening call. Higher = cheaper, sloppier.
+screen_jd_chars: 1600     # JD truncation for screening (a bit more room to read "0-2 years")
+draft_jd_chars: 6000      # JD truncation for drafting
+score_threshold: 6.0      # slightly lower: fresher fit scores run lower than for experienced profiles
+max_per_digest: 8         # hard cap on expensive draft calls per run
+
+# --- paths ------------------------------------------------------------------
+companies_file: companies.yaml
+profile_file: profile.json
+seen_file: seen.json
+digest_file: out/digest.html
+tracker_csv: out/tracker.csv
